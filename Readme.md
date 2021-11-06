@@ -12,3 +12,4 @@ The dataset is split in train and test image with :
 
 
 The dataset come from https://www.kaggle.com
+Documentation for the NN : https://keras.io/examples/vision/image_classification_from_scratch/
