@@ -1,8 +1,9 @@
 from tensorflow import keras
+import tensorflow
 from tensorflow.keras import layers
 import numpy as np
 import matplotlib.pyplot as plt
-
+from tkinter.filedialog import *
 
 
 def PlotAccuracy(model):
@@ -22,7 +23,8 @@ batch_size = 32
 num_classes = 3
 
 
-os.chdir("/Users/maximeboulanger/Documents/CNN Covid19 xray/covid dataset/Covid19-dataset")
+#os.chdir("/Users/maximeboulanger/Documents/CNN Covid19 xray/covid dataset/Covid19-dataset")
+os.chdir("C:\\Users\\maxim\\Documents\\IA\\COVID Github\\covid dataset\\Covid19-dataset")
 
 
 train_ds = keras.preprocessing.image_dataset_from_directory(
@@ -47,7 +49,7 @@ val_ds = keras.preprocessing.image_dataset_from_directory(
 
 # 0 : Covid
 # 1 : Normal
-# 0 : Pneumonia
+# 2 : Pneumonia
 
 plt.figure(figsize=(10, 10))
 for images, labels in train_ds.take(1):
@@ -103,3 +105,18 @@ model.summary()
 
 modelAccuracy = model.fit(train_ds, batch_size=batch_size_image, epochs=epochs_image, validation_data=val_ds)
 PlotAccuracy(modelAccuracy)
+
+
+# Test the NN on new data :
+
+img = keras.preprocessing.image.load_img(
+    askopenfilename(), target_size=image_size
+)
+img_array = keras.preprocessing.image.img_to_array(img)
+img_array = np.expand_dims(img_array, 0)  # Create batch axis
+
+predictions = model.predict(img_array)
+score = predictions[0]
+
+print("Covid | Normal | Viral pneumonia")
+print(score)
