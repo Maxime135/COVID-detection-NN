@@ -24,7 +24,7 @@ num_classes = 3
 
 
 #os.chdir("/Users/maximeboulanger/Documents/CNN Covid19 xray/covid dataset/Covid19-dataset")
-os.chdir("C:\\Users\\maxim\\Documents\\IA\\COVID Github\\covid dataset\\Covid19-dataset")
+os.chdir("covid dataset\\Covid19-dataset")
 
 
 train_ds = keras.preprocessing.image_dataset_from_directory(
